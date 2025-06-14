@@ -1,0 +1,26 @@
+# Node modules
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# JSON logs (if used for sensitive data)
+*.log
+alerts.json
+users.json
+
+# Excel logs (if they contain sensitive dispatch/stock info)
+*.xlsx

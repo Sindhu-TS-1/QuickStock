@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head><title>Login</title></head>
+<body>
+  <h2>Login</h2>
+  <form id="loginForm">
+    <input type="text" name="username" placeholder="Username" required /><br>
+    <input type="password" name="password" placeholder="Password" required /><br>
+     <select name="role" required>
+      <option value="">-- Select Role --</option>
+      <option value="worker">Worker</option>
+      <option value="supplier">Supplier</option>
+    </select>
+    <br>
+      
+   
+    <button type="submit">Login</button>
+  </form>
+  <p>Don't have an account? <a href="/register.html">Register</a></p>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const roleFromURL = urlParams.get('role');
+       if (roleFromURL) {
+      document.getElementById('roleInput').value = roleFromURL;
+    } 
+    //else {
+     // alert('Role not specified. Please go back and choose worker or supplier.');
+    //  window.location.href = '/';
+   // }
+
+    document.getElementById("loginForm").onsubmit = async (e) => {
+      e.preventDefault();
+      const form = new FormData(e.target);
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        body: JSON.stringify({
+          username: form.get('username'),
+          password: form.get('password'),
+          role: form.get('role')
+        }),
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const result = await res.json();
+      if (result.success) {
+        localStorage.setItem("user", JSON.stringify(result.user));
+        window.location.href = result.redirect;
+      } else {
+        alert(result.message);
+      }
+    }
+  </script>
+</body>
+</html>

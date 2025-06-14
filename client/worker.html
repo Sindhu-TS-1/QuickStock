@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuickStock - Worker Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>QuickStock Alert System</h1>
+
+    <label for="itemId">Item ID:</label>
+    <input type="text" id="itemId" placeholder="Enter item ID">
+
+    <label for="itemName">Item Name:</label>
+    <input type="text" id="itemName" disabled>
+
+    <button id="sendAlertBtn">Send Alert to Supplier</button>
+
+    <div id="status"></div>
+  </div>
+
+  <script src="http://localhost:5500/socket.io/socket.io.js"></script>
+  <script src="index.js"></script>
+  <script>const user = JSON.parse(localStorage.getItem("user"));
+if (!user || user.role !== 'worker') {
+  alert('Unauthorized access');
+  window.location.href = "/login.html";
+}
+</script>
+<script>
+  const socket = io("http://localhost:5500");
+
+  // other socket.on listeners...
+
+  // 🔔 Add this to notify worker if item is out of stock
+  socket.on('stockUnavailable', (data) => {
+    alert(`⚠️ '${data.itemName}' (ID: ${data.itemId}) is currently out of stock.`);
+  });
+
+  socket.on('stockReplenished', (data) => {
+  alert(`✅ '${data.itemName}' (ID: ${data.itemId}) is now REPLENISHED. You may request again.`);
+});
+</script>
+
+
+</body>
+</html>

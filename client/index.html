@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .login-container input,
+    .login-container select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .login-container button {
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .login-container button:hover {
+      background: #0056b3;
+    }
+
+    .login-container p {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" name="username" placeholder="Username" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <!-- <select name="role">
+        <option value="">Select Role</option>
+        <option value="worker">Worker</option>
+        <option value="supplier">Supplier</option>
+      </select> -->
+      <button type="submit">Log In</button>
+    </form>
+    <p>Don't have an account? <a href="register.html">Sign up</a></p>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').onsubmit = async function (e) {
+      e.preventDefault();
+      const form = new FormData(this);
+
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: form.get('username'),
+          password: form.get('password'),
+          role: form.get('role')
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert("Login successful!");
+        window.location.href = result.redirect;
+      } else {
+        alert(result.message || "Login failed. Please try again or sign up.");
+      }
+    };
+  </script>
+
+</body>
+</html>
