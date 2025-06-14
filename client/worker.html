@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>QuickStock - Worker Panel</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesh<script src="<script src="<script src="https://quickstock-4.onrender.com/socket.io/socket.io.js"></script>
+"></script>
+>eet" href="style.css">
 </head>
 <body>
   <div class="container">
@@ -21,7 +23,7 @@
     <div id="status"></div>
   </div>
 
-  <script src="http://localhost:5500/socket.io/socket.io.js"></script>
+  
   <script src="index.js"></script>
   <script>const user = JSON.parse(localStorage.getItem("user"));
 if (!user || user.role !== 'worker') {
@@ -30,7 +32,7 @@ if (!user || user.role !== 'worker') {
 }
 </script>
 <script>
-  const socket = io("http://localhost:5500");
+  const socket = io("https://quickstock-4.onrender.com");
 
   // other socket.on listeners...
 

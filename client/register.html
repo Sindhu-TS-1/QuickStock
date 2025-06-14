@@ -24,7 +24,7 @@
       e.preventDefault();
       const form = new FormData(e.target);
 
-      const res = await fetch('/api/register', {
+      const res = await fetch('https://quickstock-4.onrender.com/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

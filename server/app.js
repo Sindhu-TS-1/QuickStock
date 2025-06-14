@@ -204,5 +204,12 @@ function logOutOfStockToExcel(item) {
 // === START SERVER ===
 const PORT = process.env.PORT || 5500;
 server.listen(PORT, () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
+  //console.log(`✅ Server running at http://localhost:${PORT}`);   -> for local host
 });
+
+
+
+
+//https://quickstock-4.onrender.com   -> backend
+//https://quickstock-5.onrender.com   -> frontend

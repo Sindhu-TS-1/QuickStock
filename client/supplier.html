@@ -127,7 +127,9 @@
     </div>
   </div>
 
-  <script src="http://localhost:5500/socket.io/socket.io.js"></script>
+  <script src="<!-- Socket.IO Client CDN -->
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+"></script>
   <script>socket.emit('supplier_joined');
   // Receive all past alerts
     socket.on('previous_alerts', (alerts) => {
@@ -175,7 +177,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       
-      const socket = io("http://localhost:5500");
+      const socket = io("https://quickstock-4.onrender.com");
 
       const bell = document.getElementById('bell');
       const badge = document.getElementById('bell-badge');

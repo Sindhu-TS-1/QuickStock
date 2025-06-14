@@ -1,5 +1,5 @@
-const socket = io("http://localhost:5500"); // IMPORTANT: connect to the correct port
-
+const socket = io("https://quickstock-4.onrender.com"); // IMPORTANT: connect to the correct port
+//const socket = io("http://localhost:5500"); -> use this line instead of the above line when you want t run your web in localhost
 const itemIdInput = document.getElementById('itemId');
 const itemNameInput = document.getElementById('itemName');
 const sendAlertBtn = document.getElementById('sendAlertBtn');
