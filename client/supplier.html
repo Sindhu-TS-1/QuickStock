@@ -127,10 +127,12 @@
     </div>
   </div>
 
-  <script src="<!-- Socket.IO Client CDN -->
+ <script src="https://quickstock-4.onrender.com/socket.io/socket.io.js"></script>
+
 <script src="https://quickstock-4.onrender.com"></script>
-"></script>
-  <script>socket.emit('supplier_joined');
+
+  <script>
+  socket.emit('supplier_joined');
   // Receive all past alerts
     socket.on('previous_alerts', (alerts) => {
       alerts.forEach(alert => {
@@ -141,6 +143,11 @@
      socket.on('send_alert', (data) => {
       showAlert(data);
     });
+
+    socket.on('supplierNotification', (data) => {
+  alert(`🚨 New alert for item '${data.itemName}' (ID: ${data.itemId})`);
+});
+
 
 
     

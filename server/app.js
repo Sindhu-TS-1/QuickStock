@@ -39,6 +39,7 @@ io.on('connection', (socket) => {
 
   socket.on('send_alert', (data) => {
     console.log('📦 Low stock alert received:', data);
+    io.emit("supplierNotification", data);
 
     // Save alert
     let alerts = [];
