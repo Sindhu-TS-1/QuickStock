@@ -129,10 +129,10 @@
 
  <script src="https://quickstock-4.onrender.com/socket.io/socket.io.js"></script>
 
-<script src="https://quickstock-4.onrender.com"></script>
+
 
   <script>
-  socket.emit('supplier_joined');
+  
   // Receive all past alerts
     socket.on('previous_alerts', (alerts) => {
       alerts.forEach(alert => {
@@ -140,9 +140,9 @@
       });
     });
 // Receive live alerts
-     socket.on('send_alert', (data) => {
-      showAlert(data);
-    });
+    //  socket.on('send_alert', (data) => {
+    //   showAlert(data);
+    // });
 
     socket.on('supplierNotification', (data) => {
   alert(`🚨 New alert for item '${data.itemName}' (ID: ${data.itemId})`);
@@ -156,12 +156,12 @@
       const alertMessage = `📦 LOW STOCK: ${data.itemName} (ID: ${data.itemId})`;
 
       // Option 1: Show popup
-      alert(alertMessage);
+      //alert(alertMessage);
 
       // Option 2: Append to the page
       const alertDiv = document.createElement('div');
       alertDiv.textContent = alertMessage;
-      document.getElementById('alerts').appendChild(alertDiv);
+      //document.getElementById('alerts').appendChild(alertDiv);
     }
 
     function markOutOfStock(itemId, itemName, workerSocketId) {
@@ -185,6 +185,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       
       const socket = io("https://quickstock-4.onrender.com");
+      socket.emit('supplier_joined');
 
       const bell = document.getElementById('bell');
       const badge = document.getElementById('bell-badge');
